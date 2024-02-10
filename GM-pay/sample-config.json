@@ -1,0 +1,19 @@
+{
+    "params": {
+
+  
+      "app_secret_key": "alpha-beta-gamma-gang",
+  
+      "db_username": "db user",
+      "db_pass": "db pass",
+
+  
+      "gmail-user": "your-email@gmail.com",
+      "gmail-password": "gmailpassword"
+  
+    
+  
+  
+    }
+  }
+  

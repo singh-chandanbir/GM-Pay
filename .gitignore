@@ -1,0 +1,5 @@
+node_modules
+package*
+config.json
+.DS_Store
+__pychache__/

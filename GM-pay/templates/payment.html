@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GM-pay:fututre if payments</title>
+    <link rel="stylesheet" href="/static/style/dist/output.css" />
+  </head>
+
+  <body>
+    <section class="bg-gray-50 dark:bg-gray-900 h-screen">
+      <div
+        class="flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0"
+      >
+        <div
+          class="dark:text-white w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <div id="after-txn-succ" class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            {% for message in get_flashed_messages() %}
+
+            <div
+              id="alert-2"
+              class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+              role="alert"
+            >
+              <svg
+                class="flex-shrink-0 w-4 h-4"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                />
+              </svg>
+              <span class="sr-only">Info</span>
+              <div class="ms-3 text-sm font-medium">
+                <p>{{current_user.email}}{{message}}</p>
+              </div>
+              <button
+                type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-2"
+                aria-label="Close"
+              >
+                <span class="sr-only">Close</span>
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+              </button>
+            </div>
+            {%endfor%}
+
+            <div>
+              <h1
+                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+              >
+                Order Summary
+              </h1>
+              <h2 class="dark:text-gray-300">
+                for order id {{ order_id }} on {{merchant_name}}
+              </h2>
+            </div>
+
+            <div>
+                <div class="flex justify-between">
+                  <h3>Amount in INR :</h3>
+                  <h3>₹ {{amount}}</h3>
+                </div>
+  
+                <div class="flex justify-between">
+                  <h3>Amount in USDT :</h3>
+                  <h3 class="usdt-price">$</h3>
+                </div>
+              </div>
+
+            <hr />
+
+            <div class="flex justify-between">
+                <h3>Amount in MATIC</h3>
+                <h3 class="matic-price"></h3>
+              </div>
+
+            <div>
+              <button
+                type="submit"
+                value=""
+                id="connect-metamask"
+                class="text-white bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                CONNECT METAMASK
+              </button>
+            </div>
+
+            <div class="flex justify-center items-center h-16">
+              <img
+                class="w-16"
+                src="{{url_for('static', filename='./assets/images/GM-Pay.png')}}"
+                alt=""
+              />
+              <h4>Powered by GM-Pay</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <form id="myForm" action="http://127.0.0.1:9090/status/123" >
+        <input type="hidden" name="hash"  id="hashField" value="">
+        <input type="hidden" name="status" id="statusField" value="">
+        <input type="hidden" name="amount" id="amountField" value="">
+        <input type="button" type="submit" value="" style="display: none;">
+    </form>
+    <script>
+      var cost = {{ amount }};
+    </script>
+    <script src="/static/working/payment.js"></script>
+  </body>
+</html>
