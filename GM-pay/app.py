@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template as rt, request ,flash ,redirect,jsonify
 from api.db_crud import  alreadyExit, addUser , userData, getdata
 from formClasses import signupForm, loginForm

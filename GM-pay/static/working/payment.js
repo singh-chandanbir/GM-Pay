@@ -1,5 +1,5 @@
 // import detectEthereumProvider from '@metamask/detect-provider';
-console.log("payment js loaded");
+console.log("payment js loaded"); 
 
 const finalcost = cost;
 let maticPrice = 0;

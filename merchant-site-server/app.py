@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template as rt, request ,flash ,redirect
 
 
@@ -20,7 +19,7 @@ def payments():
         value = int(request.form.get("price"))
         print(value)
 
-        url = 'http://192.168.29.165:8080/receive_data/123'  # Update with your Flask server's IP and port
+        url = 'http://127.0.0.1:8080/receive_data/123'  # Update with your Flask server's IP and port
 
         data_to_send = {'key': 'value', 'another_key': 'another_value'}
 
