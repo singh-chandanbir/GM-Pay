@@ -136,9 +136,9 @@ let totalVal = 0;
 const totalValUi = document.querySelector(".total-val");
 function updateTotalValue() {
   // change value
-const amountField = document.getElementById("amountField");
-// Update the value attribute with a variable value
-amountField.value = totalVal;
+  const amountField = document.getElementById("amountField");
+  // Update the value attribute with a variable value
+  amountField.value = totalVal;
   totalValUi.textContent = `Total Cost : ₹${totalVal}`;
 }
 productButton.addEventListener("click", () => {
@@ -224,4 +224,3 @@ function sendPost() {
     body: JSON.stringify(dataToSend),
   });
 }
-;

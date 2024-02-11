@@ -76,23 +76,23 @@
             </div>
 
             <div>
-                <div class="flex justify-between">
-                  <h3>Amount in INR :</h3>
-                  <h3>₹ {{amount}}</h3>
-                </div>
-  
-                <div class="flex justify-between">
-                  <h3>Amount in USDT :</h3>
-                  <h3 class="usdt-price">$</h3>
-                </div>
+              <div class="flex justify-between">
+                <h3>Amount in INR :</h3>
+                <h3>₹ {{amount}}</h3>
               </div>
+
+              <div class="flex justify-between">
+                <h3>Amount in USDT :</h3>
+                <h3 class="usdt-price">$</h3>
+              </div>
+            </div>
 
             <hr />
 
             <div class="flex justify-between">
-                <h3>Amount in MATIC</h3>
-                <h3 class="matic-price"></h3>
-              </div>
+              <h3>Amount in MATIC</h3>
+              <h3 class="matic-price"></h3>
+            </div>
 
             <div>
               <button
@@ -117,11 +117,11 @@
         </div>
       </div>
     </section>
-    <form id="myForm" action="http://127.0.0.1:9090/status/123" >
-        <input type="hidden" name="hash"  id="hashField" value="">
-        <input type="hidden" name="status" id="statusField" value="">
-        <input type="hidden" name="amount" id="amountField" value="">
-        <input type="button" type="submit" value="" style="display: none;">
+    <form id="myForm" action="http://127.0.0.1:9090/status/123">
+      <input type="hidden" name="hash" id="hashField" value="" />
+      <input type="hidden" name="status" id="statusField" value="" />
+      <input type="hidden" name="amount" id="amountField" value="" />
+      <input type="button" type="submit" value="" style="display: none" />
     </form>
     <script>
       var cost = {{ amount }};

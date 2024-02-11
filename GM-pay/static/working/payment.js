@@ -1,5 +1,5 @@
 // import detectEthereumProvider from '@metamask/detect-provider';
-console.log("payment js loaded"); 
+console.log("payment js loaded");
 
 const finalcost = cost;
 let maticPrice = 0;
@@ -18,14 +18,12 @@ async function convertTo(coin, finalcost) {
 
   if (coin == "usdt") {
     update_price.textContent = "$ " + finalPrice;
-
   } else {
     maticPrice = finalPrice;
     maticPriceFinal = finalPrice;
     console.log("matic price");
     console.log(maticPrice);
     update_price.textContent = finalPrice;
-
   }
   console.log("before retuen");
   console.log(finalPrice);
@@ -33,7 +31,6 @@ async function convertTo(coin, finalcost) {
 }
 convertTo("matic", finalcost);
 const usdtPrice = convertTo("usdt", finalcost);
-
 
 const connectBtn = document.querySelector("#connect-metamask");
 
@@ -67,7 +64,6 @@ async function checkNetwork() {
   }
   window.ethereum.on("chainChanged", handleChainChanged);
   function handleChainChanged(chainId) {
-
     console.log("chain changed ", chainId);
 
     changeToMatic(chainId);
@@ -81,13 +77,10 @@ function changeToMatic(chainId) {
     connectBtn.disabled = false;
     connectBtn.textContent = "Continue";
   }
-
 }
 
 function mainConnect(chainId) {
-
   getAccount();
-
 
   async function getAccount() {
     connectBtn.disabled = true;
@@ -95,7 +88,6 @@ function mainConnect(chainId) {
       .request({ method: "eth_requestAccounts" })
       .catch((err) => {
         if (err.code === 4001) {
-     
           connectBtn.textContent = "Request Rejected - Connect Again !";
           console.log("Please connect to MetaMask.");
           connectBtn.disabled = false;
@@ -154,20 +146,17 @@ function confirmCurrAcc() {
 
   window.ethereum.on("accountsChanged", handleAccountsChanged);
 
-
   function handleAccountsChanged(accounts) {
     console.log(accounts);
     currentAccount = accounts[0];
-    
-    if (accounts.length === 0) {
 
+    if (accounts.length === 0) {
       console.log("Please connect to MetaMask.");
     } else if (accounts[0] !== currentAccount) {
-
       console.log("ah check kro");
       currentAccount = accounts[0];
     }
-    
+
     convertMaticprice(maticPriceFinal);
 
     sendtxn(currentAccount);
@@ -213,15 +202,15 @@ function sendtxn(currAcc) {
 function lastFunc(txHash) {
   console.log("chandanbir bhaji krdo");
   document.querySelector('input[name="hash"]').hashField.value = txHash;
-  document.querySelector('input[name="status"]').statusField.value = "fullfilled";
-  document.querySelector('input[name="amount"]').amountField.value = maticPriceFinal;
+  document.querySelector('input[name="status"]').statusField.value =
+    "fullfilled";
+  document.querySelector('input[name="amount"]').amountField.value =
+    maticPriceFinal;
   document.getElementById("myForm").submit();
 }
 function lastFunc(txHash) {
   console.log("last fun err handle");
 }
-
-
 
 console.log("last part");
 console.log(maticPriceFinal);
@@ -230,8 +219,7 @@ let hexadecimalString = "";
 function convertMaticprice(maticPriceFinal) {
   console.log("ander");
   console.log(typeof maticPriceFinal);
-  const numberWithoutDecimal = maticPriceFinal * 10 ** 5; // 114260000000000000000
-
+  const numberWithoutDecimal = maticPriceFinal * 10 ** 18; // 114260000000000000000
 
   hexadecimalString = numberWithoutDecimal.toString(16); // "6a9e7e809000000000"
   hexadecimalString = "0x" + hexadecimalString;
