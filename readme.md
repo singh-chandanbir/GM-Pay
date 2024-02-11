@@ -31,7 +31,7 @@ GM-Pay is a crypto payment gateway developed by TechyTrek for **HACKTU 5.0** at 
 ## Setup:
 
 1. **Clone the repository:**
-       ```bash
+   ```bash
     git clone https://github.com/singh-chandanbir/GM-Pay.git
 
     ```
