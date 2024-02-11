@@ -5,18 +5,19 @@ const finalcost = cost;
 let maticPrice = 0;
 let maticPriceFinal = 0;
 async function convertTo(coin, finalcost) {
-  console.log("in function");
+  // console.log("in function");
   let response = await fetch(
-    `https://gm-pay-price-conversion4.free.beeceptor.com/${coin}-price`
+    `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=INR`
   );
-  let data = await response.json();
+  let ogData = await response.json();
+  let data = ogData[`${coin}`]['inr'];
   console.log(data);
 
   let finalPrice = finalcost / data;
   finalPrice = finalPrice.toFixed(2);
   const update_price = document.querySelector(`.${coin}-price`);
 
-  if (coin == "usdt") {
+  if (coin == "tether") {
     update_price.textContent = "$ " + finalPrice;
   } else {
     maticPrice = finalPrice;
@@ -29,8 +30,8 @@ async function convertTo(coin, finalcost) {
   console.log(finalPrice);
   return finalPrice;
 }
-convertTo("matic", finalcost);
-const usdtPrice = convertTo("usdt", finalcost);
+convertTo("matic-network", finalcost);
+const usdtPrice = convertTo("tether", finalcost);
 
 const connectBtn = document.querySelector("#connect-metamask");
 
@@ -179,7 +180,7 @@ function sendtxn(currAcc) {
         {
           from: currAcc, // The user's active address.
           to: "0x078Dbd14989DCF9A969456B8c5f02170b12A0eE2", // Required except during contract publications.
-          value: hexadecimalString, // Only required to send ether to the recipient from the initiating external account.
+          value: `${convertMaticprice(maticPriceFinal)}`, // Only required to send ether to the recipient from the initiating external account.
           gasLimit: "0x5028", // Customizable by the user during MetaMask confirmation.
           maxPriorityFeePerGas: "0x3b9aca00", // Customizable by the user during MetaMask confirmation.
           maxFeePerGas: "0x2540be400", // Customizable by the user during MetaMask confirmation.
@@ -208,21 +209,13 @@ function lastFunc(txHash) {
     maticPriceFinal;
   document.getElementById("myForm").submit();
 }
-function lastFunc(txHash) {
+function lastFunc2(txHash) {
   console.log("last fun err handle");
 }
 
-console.log("last part");
-console.log(maticPriceFinal);
-console.log(typeof maticPriceFinal);
-let hexadecimalString = "";
 function convertMaticprice(maticPriceFinal) {
-  console.log("ander");
-  console.log(typeof maticPriceFinal);
-  const numberWithoutDecimal = maticPriceFinal * 10 ** 18; // 114260000000000000000
-
-  hexadecimalString = numberWithoutDecimal.toString(16); // "6a9e7e809000000000"
-  hexadecimalString = "0x" + hexadecimalString;
-
-  console.log(hexadecimalString);
+  // console.log(typeof maticPriceFinal);
+  // converting to wei value
+  // then to string as hex value
+  return (maticPriceFinal * 10 ** 18).toString(16);
 }
