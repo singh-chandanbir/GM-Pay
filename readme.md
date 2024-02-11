@@ -72,7 +72,7 @@ GM-Pay is a crypto payment gateway developed by TechyTrek for **HACKTU 5.0** at 
 
 ## API Integration:
 
-- We used Beeceptor to fetch the Matic price through APIs.
+- We used Coingecko API to fetch the Real-time Crypto Prices.
 
 ## Additional Information:
 
